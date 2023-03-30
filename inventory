@@ -1,0 +1,6 @@
+[CONTROL]
+localhost ansible_connection=local
+
+[lab_servers]
+10.10.10.131
+10.10.10.133
