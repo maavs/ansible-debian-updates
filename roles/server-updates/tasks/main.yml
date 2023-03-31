@@ -9,8 +9,6 @@
 - name: Display services failed
   debug:
     msg: "les services en erreurs: {{ result_sysctl_failed.stdout }}"
-#  when: result_sysctl_failed.failed == false
-
 
 - name: Update packages list
   ansible.builtin.apt:
@@ -18,19 +16,11 @@
   register: result_apt_update
   when: result_sysctl_failed.failed == false
 
-#- name: Display module (apt_update) paramaters
-#  debug:
-#    var: result_apt_update
-
 - name: Upgrade packages
   ansible.builtin.apt:
     upgrade: full
   register: result_apt_full_upgrade
   when: result_apt_update.failed == false
-
-#- name: Display module (apt_full_upgrade) paramaters
-#  debug:
-#    var: result_apt_full_upgrade
 
 - name: result of the upgrade
   debug:
@@ -41,10 +31,6 @@
     autoremove: true
   register: result_apt_autoremove
   when: result_apt_update.failed == false
-
-#- name: Display module (apt_autoremove) paramaters
-#  debug:
-#    var: result_apt_autoremove
 
 - name: result of the upgrade
   debug:
