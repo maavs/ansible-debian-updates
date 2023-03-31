@@ -1,7 +1,5 @@
-#Playbook pour MAJ paquets
+#Packages updgrades playbook
 
 - hosts: lab_servers
-#  vars_files:
-#    - "{{ playbook_dir }}/globalvars/all.yml"
   roles:
     - {role: server-updates, tags: server-updates}
