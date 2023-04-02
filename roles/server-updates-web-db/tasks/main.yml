@@ -19,6 +19,22 @@
   register: result_apt_update
   when: result_sysctl_failed.failed == false
 
+- name: Hold mysql packages
+  shell:
+    cmd: apt-mark hold mysql*
+  become: yes
+  register: result_hold_mysql
+  changed_when: false
+  when: result_apt_update.failed == false
+
+- name: Hold php8 packages
+  shell:
+    cmd: apt-mark hold php8*
+  become: yes
+  register: result_hold_php8
+  changed_when: false
+  when: result_hold_mysql.failed == false
+
 - name: Upgrade packages
   ansible.builtin.apt:
     upgrade: full
@@ -35,7 +51,23 @@
     autoremove: true
   become: yes
   register: result_apt_autoremove
-  when: result_apt_update.failed == false
+  when: result_apt_full_upgrade.failed == false
+
+- name: Unhold mysql packages
+  shell:
+    cmd: apt-mark unhold mysql*
+  become: yes
+  register: result_unhold_mysql
+  changed_when: false
+  when: result_apt_autoremove.failed == false
+
+- name: Unhold php8 packages
+  shell:
+    cmd: apt-mark unhold php8*
+  become: yes
+  register: result_unhold_php8
+  changed_when: false
+  when: result_unhold_mysql.failed == false
 
 - name: result of the upgrade
   debug:
