@@ -18,6 +18,7 @@
   become: yes
   register: result_apt_update
   when: result_sysctl_failed.failed == false
+  changed_when: false
 
 - name: Upgrade packages
   apt:
