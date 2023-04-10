@@ -13,14 +13,14 @@
     msg: "les services en erreurs: {{ result_sysctl_failed.stdout }}"
 
 - name: Update packages list
-  ansible.builtin.apt:
+  apt:
     update_cache: true
   become: yes
   register: result_apt_update
   when: result_sysctl_failed.failed == false
 
 - name: Upgrade packages
-  ansible.builtin.apt:
+  apt:
     upgrade: full
   become: yes
   register: result_apt_full_upgrade
@@ -31,7 +31,7 @@
     msg: "This is the result of the upgraded packages: {{ result_apt_full_upgrade.msg }}"
 
 - name: clean unused packaged
-  ansible.builtin.apt:
+  apt:
     autoremove: true
   become: yes
   register: result_apt_autoremove

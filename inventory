@@ -7,9 +7,4 @@ ansible_become_pass='{{ linux_passwd }}'
 [lab_servers]
 10.10.10.131 
 10.10.10.133 
-
-[web_db_servers:vars]
-ansible_become_pass='{{ linux_passwd }}'
-
-[web_db_servers]
-10.10.10.134
+10.10.10.136

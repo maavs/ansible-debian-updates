@@ -6,8 +6,3 @@
   roles:
     - {role: server-updates, tags: server-updates}
 
-- hosts: web_db_servers
-  vars_files:
-    - "{{ playbook_dir }}/vars/linux.yml"
-  roles:
-    - {role: server-updates-web-db, tags: server-updates-web-db}
