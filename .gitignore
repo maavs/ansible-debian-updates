@@ -1,2 +1,5 @@
-hosts
+ansible.cfg
 logfile.log
+inventory
+server-updates.yml
+vars/
