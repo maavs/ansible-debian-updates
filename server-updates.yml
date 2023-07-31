@@ -1,8 +1,0 @@
-#Packages updgrades playbook
-
-- hosts: lab_servers
-  vars_files:
-    - "{{ playbook_dir }}/vars/linux.yml"
-  roles:
-    - {role: server-updates, tags: server-updates}
-
